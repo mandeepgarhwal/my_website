@@ -14,7 +14,7 @@ export default function ExperienceSection() {
   const [activeTab, setActiveTab] = useState('leadership'); // 'leadership' | 'education'
 
   return (
-    <section id="experience" className="py-16 lg:py-24 border-b border-zinc-200 dark:border-zinc-800">
+    <section id="experience" className="py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header & Tab Trigger Bar */}

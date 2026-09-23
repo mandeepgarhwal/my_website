@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar.jsx';
 import Hero from './components/Hero.jsx';
-import PortfolioSection from './components/PortfolioSection.jsx';
 import ExperienceSection from './components/ExperienceSection.jsx';
+import GitHubStatsSection from './components/GitHubStatsSection.jsx';
+import PortfolioSection from './components/PortfolioSection.jsx';
 import SocialFeedSection from './components/SocialFeedSection.jsx';
 import SkillsSection from './components/SkillsSection.jsx';
 import ContactSection from './components/ContactSection.jsx';
@@ -61,17 +62,38 @@ export default function App() {
           if (portfolioElem) portfolioElem.scrollIntoView({ behavior: 'smooth' });
         }} />
 
+        {/* Subtle Hairline Horizontal Separator */}
+        <div className="w-full border-t border-zinc-200/50 dark:border-zinc-800/50" role="separator" aria-hidden="true" />
+
         {/* Experience & Academic Timeline */}
         <ExperienceSection />
+
+        {/* Subtle Hairline Horizontal Separator */}
+        <div className="w-full border-t border-zinc-200/50 dark:border-zinc-800/50" role="separator" aria-hidden="true" />
+
+        {/* Real-Time GitHub Activity & Codebase Metrics */}
+        <GitHubStatsSection />
+
+        {/* Subtle Hairline Horizontal Separator */}
+        <div className="w-full border-t border-zinc-200/50 dark:border-zinc-800/50" role="separator" aria-hidden="true" />
 
         {/* Filterable Portfolio Showcase & 60fps Workbench */}
         <PortfolioSection />
 
+        {/* Subtle Hairline Horizontal Separator */}
+        <div className="w-full border-t border-zinc-200/50 dark:border-zinc-800/50" role="separator" aria-hidden="true" />
+
         {/* Integrated Social & LinkedIn Feeds */}
         <SocialFeedSection />
 
+        {/* Subtle Hairline Horizontal Separator */}
+        <div className="w-full border-t border-zinc-200/50 dark:border-zinc-800/50" role="separator" aria-hidden="true" />
+
         {/* Skills & Dual Mastery Matrix */}
         <SkillsSection />
+
+        {/* Subtle Hairline Horizontal Separator */}
+        <div className="w-full border-t border-zinc-200/50 dark:border-zinc-800/50" role="separator" aria-hidden="true" />
 
         {/* Direct Contact & Advisory Inquiry Portal */}
         <ContactSection />

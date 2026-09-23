@@ -5,6 +5,7 @@ import {
   MapPin,
   Send,
   Linkedin,
+  Facebook,
   Github,
   CheckCircle,
   Copy,
@@ -93,7 +94,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-16 lg:py-24 border-b border-zinc-200 dark:border-zinc-800">
+    <section id="contact" className="py-16 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -254,27 +255,38 @@ export default function ContactSection() {
             </div>
 
             {/* Social & Profiles Bar */}
-            <div className="pt-2 flex items-center gap-3">
+            <div className="pt-2 grid grid-cols-3 gap-2">
               <a
                 href={PERSONAL_DETAILS.linkedinUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="flex-1 py-2.5 px-3 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-300 transition-colors flex items-center justify-center gap-1.5"
+                className="py-2.5 px-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:text-[#0A66C2] dark:hover:text-[#0A66C2] hover:border-zinc-300 transition-colors flex items-center justify-center gap-1"
+                title="LinkedIn Profile"
               >
-                <Linkedin className="w-4 h-4 text-[#0A66C2]" />
-                <span>LinkedIn</span>
-                <ExternalLink className="w-3 h-3 text-zinc-400" />
+                <Linkedin className="w-3.5 h-3.5 text-[#0A66C2]" />
+                <span className="truncate">LinkedIn</span>
+              </a>
+
+              <a
+                href={PERSONAL_DETAILS.facebookUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="py-2.5 px-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:text-[#1877F2] dark:hover:text-[#1877F2] hover:border-zinc-300 transition-colors flex items-center justify-center gap-1"
+                title="Facebook Page"
+              >
+                <Facebook className="w-3.5 h-3.5 text-[#1877F2]" />
+                <span className="truncate">Facebook</span>
               </a>
 
               <a
                 href={PERSONAL_DETAILS.githubUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="flex-1 py-2.5 px-3 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-300 transition-colors flex items-center justify-center gap-1.5"
+                className="py-2.5 px-2 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:border-zinc-300 transition-colors flex items-center justify-center gap-1"
+                title="GitHub Profile"
               >
-                <Github className="w-4 h-4 text-zinc-800 dark:text-zinc-200" />
-                <span>GitHub</span>
-                <ExternalLink className="w-3 h-3 text-zinc-400" />
+                <Github className="w-3.5 h-3.5 text-zinc-800 dark:text-zinc-200" />
+                <span className="truncate">GitHub</span>
               </a>
             </div>
           </div>

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import {
   MapPin,
   Phone,
   Mail,
   Linkedin,
+  Facebook,
   Github,
   ArrowRight,
   ExternalLink,
@@ -16,6 +18,67 @@ import {
 } from 'lucide-react';
 import { PERSONAL_DETAILS, PROOF_METRICS } from '../data/portfolioData.js';
 
+// Compositor-friendly animation variants (opacity & transform only)
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const fadeUpVariant = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.55,
+      ease: [0.16, 1, 0.3, 1], // Cubic bezier for fluid, natural entrance
+    },
+  },
+};
+
+const cardVariant = {
+  hidden: { opacity: 0, scale: 0.98, y: 20 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.65,
+      ease: [0.16, 1, 0.3, 1],
+      delay: 0.15,
+    },
+  },
+};
+
+const metricsContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.07,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const metricItemVariant = {
+  hidden: { opacity: 0, y: 12 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.45,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
+
 export default function Hero({ onOpenSimulator }) {
   const [copied, setCopied] = useState(false);
 
@@ -26,7 +89,7 @@ export default function Hero({ onOpenSimulator }) {
   };
 
   return (
-    <section id="about" className="relative pt-12 pb-16 lg:pt-20 lg:pb-24 overflow-hidden border-b border-zinc-200 dark:border-zinc-800">
+    <section id="about" className="relative pt-12 pb-16 lg:pt-20 lg:pb-24 overflow-hidden">
       {/* Background Subtle Wave Grid */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]"
@@ -37,32 +100,49 @@ export default function Hero({ onOpenSimulator }) {
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
-          
+        <motion.div
+          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           {/* Left Column: Editorial Headline & Narrative */}
           <div className="lg:col-span-7 flex flex-col space-y-6">
             
             {/* Zero-Pill Editorial Kicker */}
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400">
+            <motion.div
+              variants={fadeUpVariant}
+              className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400"
+            >
               <span>Alternative Education</span>
               <span className="text-zinc-400 dark:text-zinc-600">·</span>
               <span>Physics Pedagogy</span>
               <span className="text-zinc-400 dark:text-zinc-600">·</span>
               <span>MERN Full Stack</span>
-            </div>
+            </motion.div>
 
             {/* Primary Headline */}
-            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 leading-[1.15]" style={{ textWrap: 'balance' }}>
+            <motion.h1
+              variants={fadeUpVariant}
+              className="text-3xl sm:text-5xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 leading-[1.15]"
+              style={{ textWrap: 'balance' }}
+            >
               {PERSONAL_DETAILS.primaryHeadline}
-            </h1>
+            </motion.h1>
 
             {/* Executive Synopsis Paragraph */}
-            <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl font-normal">
+            <motion.p
+              variants={fadeUpVariant}
+              className="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl font-normal"
+            >
               {PERSONAL_DETAILS.bio}
-            </p>
+            </motion.p>
 
             {/* Direct Connect Quick Actions */}
-            <div className="pt-2 flex flex-wrap items-center gap-4">
+            <motion.div
+              variants={fadeUpVariant}
+              className="pt-2 flex flex-wrap items-center gap-3 sm:gap-4"
+            >
               <a
                 href="#portfolio"
                 className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold text-white bg-amber-600 hover:bg-amber-700 dark:bg-amber-600 dark:hover:bg-amber-500 rounded-lg transition-colors shadow-xs"
@@ -75,10 +155,23 @@ export default function Hero({ onOpenSimulator }) {
                 href={PERSONAL_DETAILS.linkedinUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-200 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors"
+                className="inline-flex items-center gap-2 px-3.5 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-200 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors"
+                title="Connect on LinkedIn"
               >
                 <Linkedin className="w-4 h-4 text-[#0A66C2]" />
-                <span>LinkedIn Profile</span>
+                <span>LinkedIn</span>
+                <ExternalLink className="w-3.5 h-3.5 text-zinc-400" />
+              </a>
+
+              <a
+                href={PERSONAL_DETAILS.facebookUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 px-3.5 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-200 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors"
+                title="Connect on Facebook"
+              >
+                <Facebook className="w-4 h-4 text-[#1877F2]" />
+                <span>Facebook</span>
                 <ExternalLink className="w-3.5 h-3.5 text-zinc-400" />
               </a>
 
@@ -86,15 +179,19 @@ export default function Hero({ onOpenSimulator }) {
                 href={PERSONAL_DETAILS.githubUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-200 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors"
+                className="inline-flex items-center gap-2 px-3.5 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-200 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors"
+                title="GitHub Repositories"
               >
                 <Github className="w-4 h-4" />
                 <span>GitHub</span>
               </a>
-            </div>
+            </motion.div>
 
             {/* Institutional Coordinates and Contact Quick-Bar */}
-            <div className="pt-4 border-t border-zinc-200/80 dark:border-zinc-800/80 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-zinc-500 dark:text-zinc-400">
+            <motion.div
+              variants={fadeUpVariant}
+              className="pt-4 border-t border-zinc-200/80 dark:border-zinc-800/80 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-zinc-500 dark:text-zinc-400"
+            >
               <div className="flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-amber-500" />
                 <span>{PERSONAL_DETAILS.location}</span>
@@ -114,7 +211,7 @@ export default function Hero({ onOpenSimulator }) {
                   className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors p-1"
                   title="Copy Phone Number"
                 >
-                  {copied ? <Check className="w-3 h-3 text-emerald-500" /> : <Copy className="w-3 h-3" />}
+                  {copied ? <Check className="w-3 h-3 text-emerald-500" /> : <Copy className="w-3 h-3 text-zinc-400" />}
                 </button>
               </div>
               <span className="hidden sm:inline text-zinc-300 dark:text-zinc-700">·</span>
@@ -125,11 +222,14 @@ export default function Hero({ onOpenSimulator }) {
                 <Mail className="w-3.5 h-3.5 text-zinc-400" />
                 <span>{PERSONAL_DETAILS.email}</span>
               </a>
-            </div>
+            </motion.div>
           </div>
 
           {/* Right Column: Studio Portrait Card & Physics Teaser */}
-          <div className="lg:col-span-5 flex flex-col space-y-6">
+          <motion.div
+            className="lg:col-span-5 flex flex-col space-y-6"
+            variants={cardVariant}
+          >
             <div className="relative rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/90 p-6 shadow-sm overflow-hidden">
               
               {/* Executive Portrait Badge / Header */}
@@ -229,14 +329,23 @@ export default function Hero({ onOpenSimulator }) {
                 </a>
               </div>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        {/* Quantitative Proof Metrics Strip (Tabular Figures & Zero Pills) */}
-        <div className="mt-14 pt-10 border-t border-zinc-200/80 dark:border-zinc-800/80">
+        {/* Quantitative Proof Metrics Strip (Tabular Figures & Compositor Entrance) */}
+        <motion.div
+          className="mt-14 pt-10 border-t border-zinc-200/80 dark:border-zinc-800/80"
+          variants={metricsContainerVariants}
+          initial="hidden"
+          animate="visible"
+        >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
             {PROOF_METRICS.map((metric, idx) => (
-              <div key={idx} className="flex flex-col space-y-1">
+              <motion.div
+                key={idx}
+                variants={metricItemVariant}
+                className="flex flex-col space-y-1"
+              >
                 <div className="flex items-baseline gap-1.5">
                   <span className="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 tabular-nums">
                     {metric.value}
@@ -251,10 +360,10 @@ export default function Hero({ onOpenSimulator }) {
                 <div className="text-xs text-zinc-500 dark:text-zinc-400">
                   {metric.subtext}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

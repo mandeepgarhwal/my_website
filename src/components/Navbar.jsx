@@ -12,9 +12,9 @@ export default function Navbar({
   const navLinks = [
     { label: 'About', href: '#about' },
     { label: 'Experience', href: '#experience' },
+    { label: 'GitHub', href: '#github-stats' },
     { label: 'Portfolio', href: '#portfolio' },
     { label: 'Social Feed', href: '#social-feed' },
-    { label: 'Skills', href: '#skills' },
     { label: 'Contact', href: '#contact' },
   ];
 

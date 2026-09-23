@@ -15,6 +15,7 @@ export const PERSONAL_DETAILS = {
   email: 'Mandeepgarhwal72@gmail.com',
   whatsappUrl: 'https://wa.me/918950890009',
   linkedinUrl: 'https://www.linkedin.com/in/mandeep-garhwal-766105408',
+  facebookUrl: 'https://www.facebook.com/mandeepgarhwal/',
   githubUrl: 'https://github.com/mandeepgarhwal',
   bio: 'Accomplished institutional leader and physics pedagogy specialist with over 16 years directing academic operations, scaling coaching institutions across northern India, and mentoring over 12,500 JEE and NEET aspirants. Combining deep electronic engineering roots (B.E. ECE) with modern full-stack MERN software development to construct next-generation pedagogical simulators, campus analytics systems, and experiential STEM ecosystems.',
 };
@@ -299,6 +300,23 @@ Here are 3 operational tenets that allowed us to scale without diluting rank qua
     likesCount: 215,
     sharesCount: 53,
     url: 'https://www.linkedin.com/in/mandeep-garhwal-766105408',
+  },
+  {
+    id: 'post-4',
+    platform: 'Facebook',
+    author: 'Mandeep Garhwal',
+    role: 'Academic Advisor · Physics Mentor',
+    date: 'Community Dispatch',
+    readTime: '2 min read',
+    content: `Addressing doubts in Electromagnetism & Optics: Why intuitive visualization trumps memorizing Gauss’s Law formulas.
+
+Great interactive Q&A session with our JEE Advanced aspirants this week! A core takeaway we explored: when calculating electric flux through irregular Gaussian surfaces, don't rush into integration. Look at symmetry and field line topologies first.
+
+Follow the official Facebook page for daily physics conceptual teasers, doubt breakdowns, and upcoming STEM seminar schedules.`,
+    tags: ['PhysicsCommunity', 'JEEPreparation', 'Optics', 'Electrodynamics'],
+    likesCount: 164,
+    sharesCount: 38,
+    url: 'https://www.facebook.com/mandeepgarhwal/',
   },
 ];
 

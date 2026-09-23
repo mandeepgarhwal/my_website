@@ -1,6 +1,6 @@
 import React from 'react';
 import { PERSONAL_DETAILS } from '../data/portfolioData.js';
-import { ArrowUp, Linkedin, Github, Mail, Phone, MapPin } from 'lucide-react';
+import { ArrowUp, Linkedin, Facebook, Github, Mail, Phone, MapPin } from 'lucide-react';
 
 export default function Footer({ onOpenTechSpec }) {
   const scrollToTop = () => {
@@ -8,7 +8,7 @@ export default function Footer({ onOpenTechSpec }) {
   };
 
   return (
-    <footer className="bg-zinc-100 dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800 transition-colors">
+    <footer className="bg-zinc-100 dark:bg-zinc-950 border-t border-zinc-200/50 dark:border-zinc-800/50 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 pb-12 border-b border-zinc-200 dark:border-zinc-800">
@@ -46,6 +46,11 @@ export default function Footer({ onOpenTechSpec }) {
               <li>
                 <a href="#experience" className="text-zinc-600 dark:text-zinc-400 hover:text-amber-600 dark:hover:text-amber-400 transition-colors">
                   Leadership Timeline (16+ Yrs)
+                </a>
+              </li>
+              <li>
+                <a href="#github-stats" className="text-zinc-600 dark:text-zinc-400 hover:text-amber-600 dark:hover:text-amber-400 transition-colors">
+                  GitHub Activity & Codebase
                 </a>
               </li>
               <li>
@@ -103,6 +108,15 @@ export default function Footer({ onOpenTechSpec }) {
                 title="LinkedIn Profile"
               >
                 <Linkedin className="w-4 h-4" />
+              </a>
+              <a
+                href={PERSONAL_DETAILS.facebookUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="p-2 rounded-lg bg-zinc-200/60 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:text-[#1877F2] transition-colors"
+                title="Facebook Page"
+              >
+                <Facebook className="w-4 h-4" />
               </a>
               <a
                 href={PERSONAL_DETAILS.githubUrl}

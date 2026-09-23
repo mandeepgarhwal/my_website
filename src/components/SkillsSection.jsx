@@ -11,7 +11,7 @@ export default function SkillsSection() {
   };
 
   return (
-    <section id="skills" className="py-16 lg:py-24 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-950/40">
+    <section id="skills" className="py-16 lg:py-24 bg-zinc-50/50 dark:bg-zinc-950/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
