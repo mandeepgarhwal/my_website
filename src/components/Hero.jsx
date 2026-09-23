@@ -18,40 +18,69 @@ import {
 } from 'lucide-react';
 import { PERSONAL_DETAILS, PROOF_METRICS } from '../data/portfolioData.js';
 
-// Compositor-friendly animation variants (opacity & transform only)
+// Compositor-friendly animation variants (strictly opacity and transform only)
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.05,
+      staggerChildren: 0.1,
+      delayChildren: 0.08,
     },
   },
 };
 
 const fadeUpVariant = {
-  hidden: { opacity: 0, y: 16 },
+  hidden: {
+    opacity: 0,
+    y: 18,
+  },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.55,
-      ease: [0.16, 1, 0.3, 1], // Cubic bezier for fluid, natural entrance
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1], // Natural cubic bezier curve
+    },
+  },
+};
+
+const actionButtonsContainerVariant = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.06,
+    },
+  },
+};
+
+const actionButtonVariant = {
+  hidden: { opacity: 0, y: 10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.45,
+      ease: [0.16, 1, 0.3, 1],
     },
   },
 };
 
 const cardVariant = {
-  hidden: { opacity: 0, scale: 0.98, y: 20 },
+  hidden: {
+    opacity: 0,
+    scale: 0.97,
+    y: 22,
+  },
   visible: {
     opacity: 1,
     scale: 1,
     y: 0,
     transition: {
-      duration: 0.65,
+      duration: 0.7,
       ease: [0.16, 1, 0.3, 1],
-      delay: 0.15,
+      delay: 0.12,
     },
   },
 };
@@ -61,19 +90,22 @@ const metricsContainerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.07,
-      delayChildren: 0.3,
+      staggerChildren: 0.08,
+      delayChildren: 0.32,
     },
   },
 };
 
 const metricItemVariant = {
-  hidden: { opacity: 0, y: 12 },
+  hidden: {
+    opacity: 0,
+    y: 14,
+  },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.45,
+      duration: 0.5,
       ease: [0.16, 1, 0.3, 1],
     },
   },
@@ -90,8 +122,11 @@ export default function Hero({ onOpenSimulator }) {
 
   return (
     <section id="about" className="relative pt-12 pb-16 lg:pt-20 lg:pb-24 overflow-hidden">
-      {/* Background Subtle Wave Grid */}
-      <div
+      {/* Background Subtle Wave Grid with Smooth Opacity Fade-in */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, ease: 'easeOut' }}
         className="absolute inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05]"
         style={{
           backgroundImage: `radial-gradient(currentColor 1px, transparent 1px)`,
@@ -113,6 +148,7 @@ export default function Hero({ onOpenSimulator }) {
             <motion.div
               variants={fadeUpVariant}
               className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400"
+              style={{ willChange: 'opacity, transform' }}
             >
               <span>Alternative Education</span>
               <span className="text-zinc-400 dark:text-zinc-600">·</span>
@@ -125,7 +161,7 @@ export default function Hero({ onOpenSimulator }) {
             <motion.h1
               variants={fadeUpVariant}
               className="text-3xl sm:text-5xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 leading-[1.15]"
-              style={{ textWrap: 'balance' }}
+              style={{ textWrap: 'balance', willChange: 'opacity, transform' }}
             >
               {PERSONAL_DETAILS.primaryHeadline}
             </motion.h1>
@@ -134,24 +170,28 @@ export default function Hero({ onOpenSimulator }) {
             <motion.p
               variants={fadeUpVariant}
               className="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl font-normal"
+              style={{ willChange: 'opacity, transform' }}
             >
               {PERSONAL_DETAILS.bio}
             </motion.p>
 
             {/* Direct Connect Quick Actions */}
             <motion.div
-              variants={fadeUpVariant}
+              variants={actionButtonsContainerVariant}
               className="pt-2 flex flex-wrap items-center gap-3 sm:gap-4"
+              style={{ willChange: 'opacity, transform' }}
             >
-              <a
+              <motion.a
+                variants={actionButtonVariant}
                 href="#portfolio"
                 className="inline-flex items-center gap-2 px-5 py-3 text-sm font-semibold text-white bg-amber-600 hover:bg-amber-700 dark:bg-amber-600 dark:hover:bg-amber-500 rounded-lg transition-colors shadow-xs"
               >
                 <span>Explore Technical Case Studies</span>
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
+                variants={actionButtonVariant}
                 href={PERSONAL_DETAILS.linkedinUrl}
                 target="_blank"
                 rel="noreferrer"
@@ -161,9 +201,10 @@ export default function Hero({ onOpenSimulator }) {
                 <Linkedin className="w-4 h-4 text-[#0A66C2]" />
                 <span>LinkedIn</span>
                 <ExternalLink className="w-3.5 h-3.5 text-zinc-400" />
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
+                variants={actionButtonVariant}
                 href={PERSONAL_DETAILS.facebookUrl}
                 target="_blank"
                 rel="noreferrer"
@@ -173,9 +214,10 @@ export default function Hero({ onOpenSimulator }) {
                 <Facebook className="w-4 h-4 text-[#1877F2]" />
                 <span>Facebook</span>
                 <ExternalLink className="w-3.5 h-3.5 text-zinc-400" />
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
+                variants={actionButtonVariant}
                 href={PERSONAL_DETAILS.githubUrl}
                 target="_blank"
                 rel="noreferrer"
@@ -184,13 +226,14 @@ export default function Hero({ onOpenSimulator }) {
               >
                 <Github className="w-4 h-4" />
                 <span>GitHub</span>
-              </a>
+              </motion.a>
             </motion.div>
 
             {/* Institutional Coordinates and Contact Quick-Bar */}
             <motion.div
               variants={fadeUpVariant}
               className="pt-4 border-t border-zinc-200/80 dark:border-zinc-800/80 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-zinc-500 dark:text-zinc-400"
+              style={{ willChange: 'opacity, transform' }}
             >
               <div className="flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-amber-500" />
@@ -208,7 +251,7 @@ export default function Hero({ onOpenSimulator }) {
                 <button
                   type="button"
                   onClick={handleCopyPhone}
-                  className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors p-1"
+                  className="text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors p-1 cursor-pointer"
                   title="Copy Phone Number"
                 >
                   {copied ? <Check className="w-3 h-3 text-emerald-500" /> : <Copy className="w-3 h-3 text-zinc-400" />}
@@ -229,6 +272,7 @@ export default function Hero({ onOpenSimulator }) {
           <motion.div
             className="lg:col-span-5 flex flex-col space-y-6"
             variants={cardVariant}
+            style={{ willChange: 'opacity, transform' }}
           >
             <div className="relative rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/90 p-6 shadow-sm overflow-hidden">
               
@@ -338,6 +382,7 @@ export default function Hero({ onOpenSimulator }) {
           variants={metricsContainerVariants}
           initial="hidden"
           animate="visible"
+          style={{ willChange: 'opacity, transform' }}
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
             {PROOF_METRICS.map((metric, idx) => (
@@ -345,6 +390,7 @@ export default function Hero({ onOpenSimulator }) {
                 key={idx}
                 variants={metricItemVariant}
                 className="flex flex-col space-y-1"
+                style={{ willChange: 'opacity, transform' }}
               >
                 <div className="flex items-baseline gap-1.5">
                   <span className="text-3xl sm:text-4xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-50 tabular-nums">
